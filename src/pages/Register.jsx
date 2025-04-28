@@ -23,8 +23,22 @@ const Register = () => {
       navigate('/verify-email'); // Redirect to email verification after successful registration
     } catch (err) {
       console.error(err);
-      alert('Registration failed. Please try again.');
+      if (err.response && err.response.data) {
+        if (err.response.data.errors) {
+          // Handling multiple validation errors (from express-validator)
+          const errorMsgs = err.response.data.errors.map(error => error.msg).join('\n');
+          alert(errorMsgs);
+        } else if (err.response.data.msg) {
+          // Single error message (e.g., Email already in use)
+          alert(err.response.data.msg);
+        } else {
+          alert('Something went wrong. Please try again.');
+        }
+      } else {
+        alert('Unable to connect to the server.');
+      }
     }
+    
   };
 
   return (
