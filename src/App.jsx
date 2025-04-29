@@ -7,7 +7,10 @@ import VerifyEmail from './pages/Emailconfirm';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import TurfDetails from './pages/TurfDetails';
-
+import Footer from './components/Footer';
+import BookingPage from './pages/Booking';
+import CheckoutPage from './pages/Checkout';
+import Profile from './pages/Profile';
 function App() {
   return (
     <>
@@ -21,7 +24,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/verify-email" element={<VerifyEmail />} />
           <Route path="/turfs/:id" element={<TurfDetails />} />
-
+          <Route path="/booking/:id" element={<BookingPage />} />
 
           {/* Protect all private pages */}
           <Route
@@ -32,8 +35,11 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/checkout" element={<ProtectedRoute><CheckoutPage /> </ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           {/* Add other protected routes in the same way */}
         </Routes>
+        <Footer />
       </Router>
     </>
   );
