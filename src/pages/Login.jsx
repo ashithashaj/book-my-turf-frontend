@@ -17,8 +17,6 @@ const Login = () => {
       
       // Save token to localStorage
       localStorage.setItem('token', res.data.token);
-
-      alert('Login successful!');
       navigate('/'); // Redirect to homepage
     } catch (err) {
       console.error(err);

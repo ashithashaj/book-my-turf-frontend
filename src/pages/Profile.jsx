@@ -55,10 +55,15 @@ export default function Profile() {
       );
       setUser(res.data);
       setShowModal(false);
+  
+      if (res.data.redirectToVerify) {
+        window.location.href = "/verify-email"; // adjust based on your routing setup
+      }
     } catch (err) {
       alert(err.response?.data?.msg || "Update failed");
     }
   };
+  
 
   if (error) {
     return (
